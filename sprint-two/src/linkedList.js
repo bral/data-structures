@@ -30,7 +30,21 @@ var makeLinkedList = function(){
     return firstValue;
   };
 
-  list.contains = function(){
+  list.contains = function(item){
+    var node = this.head;
+
+    if(!node) {
+      return false;
+    }
+
+    while (node.next) {
+      if (node.value === item) {
+        return true;
+      } else {
+        node = node.next;
+      }
+    }
+    return false;
   };
 
   return list;

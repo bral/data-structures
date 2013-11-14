@@ -58,5 +58,23 @@ describe("linkedList", function() {
     linkedList.addToTail("z");
     var result = linkedList.removeHead();
     expect(result).toEqual("z");
-  })
+  });
+
+  it("should return true when contains finds the passed in value", function () {
+    linkedList.addToTail("z");
+    linkedList.addToTail("Yo!");
+    linkedList.addToTail(1024);
+    expect(linkedList.contains("Yo!")).toEqual(true);
+  });
+
+  it("should return false when contains does not find the passed in value", function() {
+    linkedList.addToTail("z");
+    linkedList.addToTail("Yo!");
+    linkedList.addToTail(1024);
+    expect(linkedList.contains("It's here")).toEqual(false);
+  });
+
+  it("should return false when contains is passed a value on an empty list", function() {
+    expect(linkedList.contains("It's here")).toEqual(false);
+  });
 });
