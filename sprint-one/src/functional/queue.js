@@ -5,7 +5,7 @@ var makeQueue = function(){
   var storage = {};
   var head = 0;
   var tail = 0;
- 
+
   // Implement the methods below
 
   instance.enqueue = function(value){

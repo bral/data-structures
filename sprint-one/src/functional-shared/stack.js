@@ -3,12 +3,12 @@ var makeStack = function() {
   instance.storage = {};
   instance.length = 0;
 
-  _.extend(instance, stackMethods);
+  // _.extend(instance, stackMethods);
   // instance.size = stackMethods.size;
   // instance.push = stackMethods.push;
   // instance.pop = stackMethods.pop;
 
-  return instance;
+  return _.extend(instance, stackMethods);
 };
 
 var stackMethods = {
