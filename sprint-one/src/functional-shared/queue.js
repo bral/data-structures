@@ -1,29 +1,31 @@
 var makeQueue = function(){
   var instance = {};
 
-  var storage = {};
-  var head = 0;
-  var tail = 0;
+  instance.storage = {};
+  instance.head = 0;
+  instance.tail = 0;
+
+  _.extend(instance, queueMethods);
 
   return instance;
 };
 
 var queueMethods = {
   enqueue: function(value){
-    storage[tail] = value;
-    tail++;
+    this.storage[this.tail] = value;
+    this.tail++;
   },
 
   dequeue: function(){
-    var first = storage[head]
-    if (head < tail) {
-      head++;
+    var first = this.storage[this.head]
+    if (this.head < this.tail) {
+      this.head++;
     }
     return first;
   },
 
   size: function(){
-    return tail - head;
+    return this.tail - this.head;
   },
 
 };
