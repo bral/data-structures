@@ -19,11 +19,18 @@ describe("linkedList", function() {
   // add more tests here to test the functionality of linkedList
   it("should update tail when addToTail is invoked", function() {
     linkedList.addToTail("a");
-    expect(linkedList.tail).not.toBeNull();
+    expect(linkedList.tail.value).toEqual("a");
   })
 
   it("should update head when addToTail is invoked the first time", function() {
     linkedList.addToTail("a");
-    expect(linkedList.head).not.toBeNull();
+    expect(linkedList.head.value).toEqual("a");
+  });
+
+  it("should update tail to last added node when multiple nodes are added", function() {
+    linkedList.addToTail("a");
+    linkedList.addToTail("b");
+    linkedList.addToTail("c");
+    expect(linkedList.tail.value).toEqual("c");
   });
 });
