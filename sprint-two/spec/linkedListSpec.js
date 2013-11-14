@@ -21,4 +21,9 @@ describe("linkedList", function() {
     linkedList.addToTail("a");
     expect(linkedList.tail).not.toBeNull();
   })
+
+  it("should update head when addToTail is invoked the first time", function() {
+    linkedList.addToTail("a");
+    expect(linkedList.head).not.toBeNull();
+  });
 });
