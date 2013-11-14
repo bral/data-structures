@@ -18,9 +18,9 @@ var stackMethods = {
   },
 
   pop: function(){
-    var last = storage[length - 1];
-    delete storage[length - 1];
-    length && length--;
+    var last = this.storage[this.length - 1];
+    delete this.storage[this.length - 1];
+    this.length && this.length--;
     return last;
   },
 
