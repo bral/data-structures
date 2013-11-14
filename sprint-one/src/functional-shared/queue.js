@@ -1,5 +1,29 @@
 var makeQueue = function(){
-  // Hey! Copy your code from src/functional/queue.js and paste it here
+  var instance = {};
+
+  var storage = {};
+  var head = 0;
+  var tail = 0;
+
+  return instance;
 };
 
-var queueMethods = {};
+var queueMethods = {
+  enqueue: function(value){
+    storage[tail] = value;
+    tail++;
+  },
+
+  dequeue: function(){
+    var first = storage[head]
+    if (head < tail) {
+      head++;
+    }
+    return first;
+  },
+
+  size: function(){
+    return tail - head;
+  },
+
+};
