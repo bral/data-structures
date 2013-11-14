@@ -1,5 +1,5 @@
 var makeStack = function() {
-  instance = {};
+  var instance = {};
   instance.storage = {};
   instance.length = 0;
 
