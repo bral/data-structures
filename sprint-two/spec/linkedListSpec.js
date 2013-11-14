@@ -17,4 +17,8 @@ describe("linkedList", function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it("should update tail when addToTail is invoked", function() {
+    linkedList.addToTail("a");
+    expect(linkedList.tail).not.toBeNull();
+  })
 });

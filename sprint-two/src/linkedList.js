@@ -2,7 +2,7 @@
 var makeLinkedList = function(){
   var list = {};
   list.head = null;
-  list.tail = null;
+  list.tail = "a";
 
   list.addToTail = function(){
   };
