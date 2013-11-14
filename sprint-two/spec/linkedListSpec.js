@@ -33,4 +33,30 @@ describe("linkedList", function() {
     linkedList.addToTail("c");
     expect(linkedList.tail.value).toEqual("c");
   });
+
+  it("should remove head and return value, while setting new head to next value", function() {
+    linkedList.addToTail("a");
+    linkedList.addToTail("b");
+    linkedList.addToTail("c");
+    linkedList.removeHead();
+    expect(linkedList.head.value).toEqual("b");
+  });
+
+  it("should not update head when list is empty and removeHead is called", function() {
+    linkedList.removeHead();
+    expect(linkedList.head).toEqual(null);
+  });
+
+  it("should reset head and tail when last node in list is removed", function() {
+    linkedList.addToTail("a");
+    linkedList.removeHead();
+    expect(linkedList.head).toEqual(null);
+    expect(linkedList.tail).toEqual(null);
+  });
+
+  it("should return value when removeHead is called", function () {
+    linkedList.addToTail("z");
+    var result = linkedList.removeHead();
+    expect(result).toEqual("z");
+  })
 });
