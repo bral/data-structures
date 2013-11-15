@@ -16,35 +16,44 @@ HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
   var entries;
 
-  console.log(i);
-
   if (this._storage.get(i) === undefined) {
-    entries = this.makeLinkedList()
-    entries.addToTail(v);
+    entries = [[k, v]];
+    //entries.push([k, v]);
     this._storage.set(i, entries);
   } else {
     entries = this._storage.get(i);
-    entries.addToTail(v);
+    entries.push([k, v]);
   }
 };
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(i);
+
+  if (this._storage.get(i) != null) {
+    return this._storage.get(i)[0][1]
+  }
+
+  return false;
 };
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(i, null);
+
+  if (this._storage.get(i) && this._storage.get(i).length === 1) {
+    this._storage.set(i, null);
+    return true;
+  }
+
+  return false;
 };
 
-HashTable.prototype.makeLinkedList = function() {
+/* HashTable.prototype.makeLinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value){
-    var node = makeNode(value);
+  list.addToTail = function(key, value){
+    var node = makeNode(key, value);
     if (this.head === null && this.tail === null) {
       this.head = node;
       this.tail = node;
@@ -58,7 +67,7 @@ HashTable.prototype.makeLinkedList = function() {
     var firstValue;
 
     if (this.head === this.tail) {
-      firstValue = this.head && this.head.value
+      firstValue = this.head && this.head.value[0]
       this.head = null;
       this.tail = null;
       return firstValue;
@@ -89,13 +98,13 @@ HashTable.prototype.makeLinkedList = function() {
   return list;
   };
 
-  var makeNode = function(value){
+  var makeNode = function(key, value){
   var node = {};
-  node.value = value;
+  node.value = [key, value];
   node.next = null;
 
   return node;
-};
+}; */
 
 // NOTE: For this code to work, you will NEED the code from hashTableHelpers.js
 // Start by loading those files up and playing with the functions it provides.
