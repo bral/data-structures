@@ -33,4 +33,28 @@ describe("tree", function() {
     tree.value = 12;
     expect(tree.contains(12)).toEqual(true);
   });
+
+  it("should return true if target value is found on a child", function() {
+    tree.value = "a";
+    tree.addChild("b");
+    tree.addChild("c");
+    expect(tree.contains("c")).toEqual(true);
+  });
+
+  it("should return true if target value is found on any decendants of target node", function() {
+    tree.value = "a";
+    tree.addChild("b");
+    tree.addChild("c");
+    tree.children[0].addChild("d")
+    expect(tree.contains("d")).toEqual(true);
+  });
+
+  it("should return true if target value is found on a branch that is not the first object in the children array", function() {
+    tree.value = "a";
+    tree.addChild("b");
+    tree.addChild("c");
+    tree.children[1].addChild("d")
+    expect(tree.contains("d")).toEqual(true);
+  });
+
 });

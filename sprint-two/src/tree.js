@@ -20,5 +20,18 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.contains = function(value){
-  return this.value === value;
+  var result = false;
+
+  if (this.value === value) {
+    return true
+  }
+
+  for (var i = 0; i < this.children.length; i++) {
+    result = this.children[i].contains(value);
+    if (result) {
+      return result;
+    }
+  }
+
+  return result;
 };
