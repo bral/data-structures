@@ -83,4 +83,35 @@ describe("linkedList", function() {
     expect(linkedList.removeFromTail).toEqual(jasmine.any(Function));
   });
 
+  it("should add new node to the head of linked list", function() {
+    linkedList.addToHead("z");
+    expect(linkedList.head.value).toEqual("z");
+  });
+
+  it("should remove tail node on removeFromTail method invocation after adding to head", function() {
+    linkedList.addToHead("z");
+    linkedList.addToHead("Yo!");
+    linkedList.addToHead(1024);
+    linkedList.removeFromTail();
+    expect(linkedList.tail.value).toEqual("Yo!")
+  });
+
+  it("should remove tail node on removeFromTail method invocation after adding to tail", function() {
+    linkedList.addToTail("z");
+    linkedList.addToTail("Yo!");
+    linkedList.addToTail(1024);
+    linkedList.removeFromTail();
+    expect(linkedList.tail.value).toEqual("Yo!")
+  });
+
+  it("should remove the head node on removeHead method invocation after adding to head and new head node.previous value should be null", function() {
+    linkedList.addToHead("z");
+    linkedList.addToHead("Yo!");
+    linkedList.addToHead(1024);
+    linkedList.removeHead();
+    expect(linkedList.head.value).toEqual("Yo!");
+    expect(linkedList.head.previous).toEqual(null);
+  });
+
+
 });
