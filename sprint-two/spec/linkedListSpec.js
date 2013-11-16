@@ -77,4 +77,10 @@ describe("linkedList", function() {
   it("should return false when contains is passed a value on an empty list", function() {
     expect(linkedList.contains("It's here")).toEqual(false);
   });
+
+  it("should have addToHead and removeFromTail methods", function() {
+    expect(linkedList.addToHead).toEqual(jasmine.any(Function));
+    expect(linkedList.removeFromTail).toEqual(jasmine.any(Function));
+  });
+
 });

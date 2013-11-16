@@ -47,6 +47,9 @@ var makeLinkedList = function(){
     return false;
   };
 
+  list.addToHead = function() {};
+  list.removeFromTail = function() {};
+
   return list;
 };
 
