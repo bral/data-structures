@@ -1,8 +1,9 @@
-var makeBinarySearchTree = function(){
+var makeBinarySearchTree = function(value){
   var newBSTree = {};
-  newBSTree.value = undefined;
+  newBSTree.value = value;
   newBSTree.left = null;
   newBSTree.right = null;
+  newBSTree.parent = null;
 
 
   newBSTree.insert = bsTreeMethods.insert;
@@ -17,7 +18,7 @@ var makeBinarySearchTree = function(){
 var bsTreeMethods = {};
 
 bsTreeMethods.insert = function(value){
-  var thisChild = makeBinarySearchTree();
+  var thisChild = makeBinarySearchTree(value);
   //thisChild.parent = this;
   thisChild.value = value;
 
@@ -44,31 +45,32 @@ bsTreeMethods.insert = function(value){
 bsTreeMethods.contains = function(value){
   var result = false;
 
-  if (this.value === value) {
-    return true
-  }
-
-  for (var i = 0; i < this.children.length; i++) {
-    result = this.children[i].contains(value);
-    if (result) {
-      return result;
+  var search = function(node, value) {
+    if (node.value === value) {
+      result = true;
+    } else {
+      if (node.value > value) {
+        search(node.left, value);
+      } else {
+        search(node.right, value);
+      }
     }
-  }
+  };
+
+  search(this, value);
 
   return result;
 };
 
-bsTreeMethods.depthFirstLog = function(value) {
-  // var me = this;
-  // var parent = me.parent;
+bsTreeMethods.depthFirstLog = function(cb) {
 
-  for(var i = 0; i < this.children.length; i++) {
-    this.children[i].parent = this.parent;
-
-    this.parent.children.push(this.children[i]);
+  if (this.left) {
+    this.left.depthFirstLog(cb);
   }
 
-  this.parent.children.splice(value, 1);
+  cb(this);
 
-  this.parent = null;
+  if (this.right) {
+    this.right.depthFirstLog(cb);
+  }
 };
