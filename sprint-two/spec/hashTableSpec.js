@@ -47,17 +47,6 @@ describe("hashTable", function() {
   //   expect(hashTable.retrieve("one")).toEqual(1);
   // });
 
-
-
-
-
-
-
-
-
-
-
-
   it("should handle hash function collisions", function(){
     // force the hash function to return 0
     spyOn(window, 'getIndexBelowMaxForKey').andReturn(0);

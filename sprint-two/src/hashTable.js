@@ -14,23 +14,32 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  var entries;
+  var inputs;
+  var entries = this._storage.get(i)
 
-  if (this._storage.get(i) === undefined) {
-    entries = [[k, v]];
+  if (entries === undefined) {
+    inputs = [[k, v]];
     //entries.push([k, v]);
-    this._storage.set(i, entries);
+    this._storage.set(i, inputs);
   } else {
-    entries = this._storage.get(i);
     entries.push([k, v]);
   }
 };
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
+  var entries = this._storage.get(i);
 
-  if (this._storage.get(i) != null) {
-    return this._storage.get(i)[0][1]
+  if (entries != null) {
+    if (entries.length === 1) {
+      return entries[0][1];
+    } else {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i][0] === k){
+          return entries[i][1]
+        }
+      }
+    }
   }
 
   return false;
@@ -38,8 +47,9 @@ HashTable.prototype.retrieve = function(k){
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
+  var entries = this._storage.get(i);
 
-  if (this._storage.get(i) && this._storage.get(i).length === 1) {
+  if (entries && entries.length === 1) {
     this._storage.set(i, null);
     return true;
   }
