@@ -57,4 +57,23 @@ describe("tree", function() {
     expect(tree.contains("d")).toEqual(true);
   });
 
+  it("should contain a tree property", function() {
+    expect("parent" in tree).toBe(true);
+  });
+
+  it("when child is added should point to parent tree", function() {
+    tree.value = "a";
+    tree.addChild("b");
+    tree.addChild("c");
+    expect(tree.children[0].parent.value).toEqual("a");
+  });
+
+  it("should remove a node from the tree and connect children to parent", function() {
+    tree.value = "a";
+    tree.addChild("b");
+    tree.addChild("c");
+    tree.children[0].addChild("d");
+    tree.children[0].removeFromParent("c");
+    expect(tree.children[1].value).toBe("d");
+  });
 });
