@@ -50,7 +50,7 @@ describe("binarySearchTree", function() {
     var result = []
     binarySearchTree.depthFirstLog(function(node) {
       result.push(node.value);
-    }));
+    });
     expect(result).toEqual([5]);
   });
 
@@ -66,7 +66,19 @@ describe("binarySearchTree", function() {
     var result = []
     binarySearchTree.depthFirstLog(function(node) {
       result.push(node.value);
-    }));
+    });
     expect(result).toEqual([1,2,2,3,5,6,7,8,9]);
+  });
+
+  it("should console log every in breadth first fashion when .breadthFirstLog is invoked", function() {
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(8);
+    binarySearchTree.insert(9);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(6);
+    binarySearchTree.breadthFirstLog();
   });
 });

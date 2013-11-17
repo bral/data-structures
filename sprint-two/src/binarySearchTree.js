@@ -9,6 +9,7 @@ var makeBinarySearchTree = function(value){
   newBSTree.insert = bsTreeMethods.insert;
   newBSTree.contains = bsTreeMethods.contains;
   newBSTree.depthFirstLog = bsTreeMethods.depthFirstLog;
+  newBSTree.breadthFirstLog = bsTreeMethods.breadthFirstLog;
   // _.extend(newTree, bsTreeMethods);
 
   return newBSTree;
@@ -74,3 +75,48 @@ bsTreeMethods.depthFirstLog = function(cb) {
     this.right.depthFirstLog(cb);
   }
 };
+
+bsTreeMethods.breadthFirstLog = function() {
+  var queue = makeQueue();
+  var current;
+
+  queue.enqueue(this);
+
+  while (queue.size() > 0) {
+    current = queue.dequeue();
+    console.log(current.value);
+
+    if (current.left) {
+      queue.enqueue(current.left)
+    }
+
+    if (current.right) {
+      queue.enqueue(current.right)
+    }
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

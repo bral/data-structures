@@ -57,5 +57,16 @@ describe("hashTable", function() {
     expect(hashTable.retrieve(v2)).toEqual(v2);
   });
 
-  // add more tests!
+  it("should overwrite a pre-exsiting key's value with new value", function() {
+    hashTable.insert("one", 2);
+    hashTable.insert("one", 3);
+    expect(hashTable.retrieve("one")).toEqual(3);
+  });
+
+  it("should increase size by one for each element added", function() {
+    hashTable.insert("one", 2);
+    hashTable.insert("twenty", 3);
+    expect(hashTable._size).toEqual(2);
+
+  });
 });
