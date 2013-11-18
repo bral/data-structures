@@ -34,7 +34,8 @@ describe("hashTable", function() {
 
   it("should return false when retrieve is called on a nonexistant key", function() {
     expect(hashTable.retrieve("one")).toEqual(false);
-  })
+  });
+
   // it("should create a linkedList when makeLinkedList is called", function() {
   //   var ll = hashTable.makeLinkedList();
   //   expect(ll.head).toEqual(null);
@@ -64,9 +65,35 @@ describe("hashTable", function() {
   });
 
   it("should increase size by one for each element added", function() {
-    hashTable.insert("one", 2);
-    hashTable.insert("twenty", 3);
-    expect(hashTable._size).toEqual(2);
+    hashTable.insert("one", 1);
+    hashTable.insert("two", 2);
+    hashTable.insert("three", 3);
+    hashTable.insert("four", 4);
+    hashTable.insert("five", 5);
+    hashTable.insert("six", 6);
+    expect(hashTable._size).toEqual(6);
 
+  });
+
+  it("should have the correct size to limit ratio", function() {
+    hashTable.insert("one", 1);
+    hashTable.insert("two", 2);
+    hashTable.insert("three", 3);
+    hashTable.insert("four", 4);
+    hashTable.insert("five", 5);
+    hashTable.insert("six", 6);
+    expect(hashTable._size / hashTable._limit).toEqual(0.75);
+  });
+
+  it("should resize the hash table when total items inserted equals 75% of limit", function() {
+    hashTable.insert("one", 1);
+    hashTable.insert("two", 2);
+    hashTable.insert("three", 3);
+    hashTable.insert("four", 4);
+    hashTable.insert("five", 5);
+    hashTable.insert("six", 6);    
+    hashTable.insert("seven", 7);    
+    hashTable.insert("eight", 8);    
+    expect(hashTable._limit).toEqual(16)
   });
 });
